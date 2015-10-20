@@ -5,7 +5,8 @@ use Postmark\Models\PostmarkAttachment;
 use Postmark\PostmarkClient;
 
 //function sendBatchOfEmails(){
-    $attachment = "test";
+    $attachment = PostmarkAttachment::fromFile
+                      (dirname(__FILE__). '/test.jpg', 'attachment-file-name.jpg', image/jpg);
     
     //$TussenArray = $_POST;
     //$message = $_POST;
@@ -20,7 +21,8 @@ use Postmark\PostmarkClient;
         'From' => "roderik@masure.org",
         'Cc' => "mistermorgoth666@gmail.com",
         'Subject' => "Test",
-        'TextBody' => "Dit is een testmail, ik hoop dat het nu eindelijk werkt."
+        'TextBody' => "Dit is een testmail, ik hoop dat het nu eindelijk werkt.",
+        'Attachments' => $attachment
     );
 
     $client = new PostmarkClient("f92ee11a-3de9-48ff-801e-1b6efc9afcdf");
